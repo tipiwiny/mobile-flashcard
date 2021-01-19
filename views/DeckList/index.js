@@ -9,6 +9,11 @@ class DeckList extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchGetDecks());
   }
+  onPress(deck) {
+    this.props.navigation.navigate("DeckSingle", {
+      deck
+    });
+  }
   render() {
     const { decks } = this.props;
     return (
@@ -16,7 +21,7 @@ class DeckList extends React.Component {
         <Header title="My App" />
         <ScrollView>
           {decks.map((deck) => (
-            <DeckItem deck={deck} key={deck.id} />
+            <DeckItem deck={deck} key={deck.id} onPress={this.onPress.bind(this)} />
           ))}
         </ScrollView>
       </View>

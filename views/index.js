@@ -4,7 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import DeckList from './DeckList'
+import DeckStack from './DeckStack'
+import DeckList from "./DeckList";
 
 
 function SettingsScreen() {
@@ -35,7 +36,7 @@ export default function App() {
           inactiveTintColor: "gray",
         }}
       >
-        <Tab.Screen name="deckList" component={DeckList} options={{ title: 'Home'}}/>
+        <Tab.Screen name="deckList" component={DeckStack} options={{ title: 'Home'}}/>
         <Tab.Screen name="Add" component={SettingsScreen}  options={{ title: 'Add Card'}}/>
       </Tab.Navigator>
     </NavigationContainer>
