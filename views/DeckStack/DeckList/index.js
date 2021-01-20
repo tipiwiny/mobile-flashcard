@@ -1,9 +1,9 @@
 import React from "react";
 import { ScrollView, View, Text } from "react-native";
 import { connect } from "react-redux";
-import { fetchGetDecks } from "../../actions";
-import DeckItem from "../../components/DeckItem";
-import Header from "../../components/Header";
+import { fetchGetDecks } from "../../../actions";
+import DeckItem from "../../../components/DeckItem";
+import Header from "../../../components/Header";
 
 class DeckList extends React.Component {
   componentDidMount() {

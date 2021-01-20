@@ -1,11 +1,10 @@
-import * as React from "react";
+import  React from "react";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import DeckStack from './DeckStack'
-import DeckList from "./DeckList";
 
 
 function SettingsScreen() {
@@ -26,7 +25,7 @@ export default function App() {
           tabBarIcon: ({color}) => {
             const icons = {
               deckList: <AntDesign name="home" size={24} color={color} />,
-              Add: <Entypo name="add-to-list" size={24} color={color} />,
+              AddDeck: <Entypo name="add-to-list" size={24} color={color} />,
             };
             return icons[route.name];
           },
@@ -37,7 +36,7 @@ export default function App() {
         }}
       >
         <Tab.Screen name="deckList" component={DeckStack} options={{ title: 'Home'}}/>
-        <Tab.Screen name="Add" component={SettingsScreen}  options={{ title: 'Add Card'}}/>
+        <Tab.Screen name="AddDeck" component={SettingsScreen}  options={{ title: 'Add Deck'}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
