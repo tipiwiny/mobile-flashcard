@@ -1,7 +1,8 @@
-import { getDecks } from "../utils/api";
+import { getDecks,addCardToDeck } from "../utils/api";
 
 export const GET_ALL_DECKS = "GET_ALL_DECKS";
-
+export const ADD_CARD_TO_DECK = "ADD_CARD_TO_DECK";
+export const GET_BY_ID = "GET_BY_ID"
 export const fetchGetDecks = () => async (dispatch) => {
   const decks = await getDecks();
   dispatch({
@@ -9,3 +10,20 @@ export const fetchGetDecks = () => async (dispatch) => {
     decks
   });
 };
+
+export const getDeckById = (deckId) => async (dispatch) => {
+  const deck = (await getDecks())[deckId];
+  dispatch({
+    type: GET_BY_ID,
+    deck
+  });
+};
+
+
+
+export const saveCardToDeck = (deckId, card) => async dispatch => {
+    await addCardToDeck(deckId,card)
+    dispatch({  
+      type: ADD_CARD_TO_DECK
+    });
+  };

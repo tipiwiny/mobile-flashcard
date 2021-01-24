@@ -2,6 +2,8 @@
 import  React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Colors,Subheading, Title } from "react-native-paper";
+import {connect} from 'react-redux'
+import { getDeckById } from "../../../actions";
 
 
 class DeckSingle extends React.Component {
@@ -9,10 +11,19 @@ class DeckSingle extends React.Component {
     const {deck} = this.props.route.params
     this.props.navigation.navigate(route, {
       deck
-    });
+        });
+  }
+
+  addQuestion(id) {
+    this.props.dispatch(getDeckById(id));
+  }
+  componentDidMount() {
+    const {deck} = this.props.route.params 
+    this.props.dispatch(getDeckById(deck.id));
+
   }
   render() {
-    const {deck} = this.props.route.params
+    const {deck} = this.props
     return (
       <View style={styles.container}>
       <Title style={styles.deckTitle}>{deck.title}</Title>
@@ -22,7 +33,6 @@ class DeckSingle extends React.Component {
         disabled={deck.questions.length > 0 ? false : true}
         style = {styles.button}
         onPress={this.onPressAddNewCard.bind(this, "StartQuiz")}
-
       >
         Start Quiz
       </Button>
@@ -30,7 +40,7 @@ class DeckSingle extends React.Component {
       <Button
         mode="outlined"
         style = {styles.button}
-        onPress={this.onPressAddNewCard.bind(this, "AddCard")}
+        onPress={this.onPressAddNewCard.bind(this, "NewQuestion")}
       >
         Add New Card
       </Button>
@@ -65,4 +75,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckSingle;
+function mapStateToProps({ decks }) {
+  return {
+    deck: decks.deck,
+  };
+}
+
+export default connect(mapStateToProps)(DeckSingle);
