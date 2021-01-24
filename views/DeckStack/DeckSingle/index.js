@@ -13,10 +13,6 @@ class DeckSingle extends React.Component {
       deck
         });
   }
-
-  addQuestion(id) {
-    this.props.dispatch(getDeckById(id));
-  }
   componentDidMount() {
     const {deck} = this.props.route.params 
     this.props.dispatch(getDeckById(deck.id));
