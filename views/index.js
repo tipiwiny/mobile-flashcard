@@ -1,19 +1,11 @@
 import  React from "react";
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import DeckStack from './DeckStack'
+import NewDeck from './NewDeck'
 
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +28,7 @@ export default function App() {
         }}
       >
         <Tab.Screen name="deckList" component={DeckStack} options={{ title: 'Home'}}/>
-        <Tab.Screen name="AddDeck" component={SettingsScreen}  options={{ title: 'Add Deck'}}/>
+        <Tab.Screen name="AddDeck" component={NewDeck}  options={{ title: 'Add Deck'}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

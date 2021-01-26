@@ -40,13 +40,6 @@ class DeckSingle extends React.Component {
       >
         Add New Card
       </Button>
-      <Button
-        style={[styles.buttonDeleteDeck, styles.button]}
-        labelStyle={styles.buttonDeleteDeckLabel}
-        mode="text"
-      >
-        Delete Deck
-      </Button>
     </View>
     )
   }
@@ -64,10 +57,6 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 15
-  },
-  buttonDeleteDeckLabel: {
-    color: Colors.red500,
-    textTransform: "none"
   }
 });
 

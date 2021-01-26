@@ -2,7 +2,7 @@ import  AsyncStorage from "@react-native-async-storage/async-storage";
 import data from "./data.json";
 
 const FLASHCARDS_STORAGE_KEY = "flashcards_data";
-
+let index= 2;
 export const getDecks = async () => {
   try {
     const decks = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY);
@@ -31,5 +31,22 @@ export async function addCardToDeck(deckId, card) {
     );
     return card;
   }
+}
+
+export async function addDeck(title) {
+  index=index + 1
+  const deck = {
+    id: index,
+    title,
+    questions: []
+  };
+
+  await AsyncStorage.mergeItem(
+    FLASHCARDS_STORAGE_KEY,
+    JSON.stringify({
+      [index]: deck
+    })
+  );
+  return deck;
 }
 
