@@ -3,13 +3,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { setLocalNotification } from '../utils/helper'
 import DeckStack from './DeckStack'
 import NewDeck from './NewDeck'
 
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+export default class App extends React.Component {
+  async componentDidMount() {
+    await setLocalNotification()
+  }
+  render(){
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -31,5 +36,5 @@ export default function App() {
         <Tab.Screen name="AddDeck" component={NewDeck}  options={{ title: 'Add Deck'}}/>
       </Tab.Navigator>
     </NavigationContainer>
-  );
+  );}
 }

@@ -5,13 +5,13 @@ import {
   Colors,
   Paragraph,
   Button,
-  IconButton,
   Subheading,
   FAB
 } from "react-native-paper";
 import { connect } from "react-redux";
 
 import { getDeckById } from "../../../actions";
+import { clearLocalNotification, setLocalNotification } from "../../../utils/helper";
 
 class StartQuiz extends React.Component {
   state = {
@@ -32,8 +32,15 @@ class StartQuiz extends React.Component {
     this.setState({ correctAnswers: this.state.correctAnswers + 1 });
     this.onPressNextQuestion();
   }
-  onPressNextQuestion() {
+  async onPressNextQuestion() {
+    const { deck } = this.props.route.params;
+    if(this.state.current >= (deck.questions.length - 1)) await this.clearNotification()
     this.setState({ current: this.state.current + 1 });
+  }
+
+  async clearNotification() {
+    await clearLocalNotification()
+    await setLocalNotification()
   }
 
   onPressResetQuiz() {
